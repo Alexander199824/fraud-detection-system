@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS clients (
 );
 
 -- Índices para clients
-CREATE INDEX idx_clients_email ON clients(email);
-CREATE INDEX idx_clients_risk_profile ON clients(risk_profile);
-CREATE INDEX idx_clients_created_at ON clients(created_at);
+CREATE INDEX IF NOT EXISTS idx_clients_email ON clients(email);
+CREATE INDEX IF NOT EXISTS idx_clients_risk_profile ON clients(risk_profile);
+CREATE INDEX IF NOT EXISTS idx_clients_created_at ON clients(created_at);
 
 -- =============================================
 -- TABLA: cards (Tarjetas)
@@ -50,9 +50,9 @@ CREATE TABLE IF NOT EXISTS cards (
 );
 
 -- Índices para cards
-CREATE INDEX idx_cards_client_id ON cards(client_id);
-CREATE INDEX idx_cards_is_active ON cards(is_active);
-CREATE INDEX idx_cards_card_type ON cards(card_type);
+CREATE INDEX IF NOT EXISTS idx_cards_client_id ON cards(client_id);
+CREATE INDEX IF NOT EXISTS idx_cards_is_active ON cards(is_active);
+CREATE INDEX IF NOT EXISTS idx_cards_card_type ON cards(card_type);
 
 -- =============================================
 -- TABLA: transactions (Transacciones)
@@ -77,13 +77,13 @@ CREATE TABLE IF NOT EXISTS transactions (
 );
 
 -- Índices para transactions
-CREATE INDEX idx_transactions_client_id ON transactions(client_id);
-CREATE INDEX idx_transactions_card_id ON transactions(card_id);
-CREATE INDEX idx_transactions_created_at ON transactions(created_at);
-CREATE INDEX idx_transactions_amount ON transactions(amount);
-CREATE INDEX idx_transactions_merchant_type ON transactions(merchant_type);
-CREATE INDEX idx_transactions_country ON transactions(country);
-CREATE INDEX idx_transactions_channel ON transactions(channel);
+CREATE INDEX IF NOT EXISTS idx_transactions_client_id ON transactions(client_id);
+CREATE INDEX IF NOT EXISTS idx_transactions_card_id ON transactions(card_id);
+CREATE INDEX IF NOT EXISTS idx_transactions_created_at ON transactions(created_at);
+CREATE INDEX IF NOT EXISTS idx_transactions_amount ON transactions(amount);
+CREATE INDEX IF NOT EXISTS idx_transactions_merchant_type ON transactions(merchant_type);
+CREATE INDEX IF NOT EXISTS idx_transactions_country ON transactions(country);
+CREATE INDEX IF NOT EXISTS idx_transactions_channel ON transactions(channel);
 
 -- =============================================
 -- TABLA: fraud_logs (Registros de análisis de fraude)
@@ -108,11 +108,11 @@ CREATE TABLE IF NOT EXISTS fraud_logs (
 );
 
 -- Índices para fraud_logs
-CREATE INDEX idx_fraud_logs_transaction_id ON fraud_logs(transaction_id);
-CREATE INDEX idx_fraud_logs_fraud_detected ON fraud_logs(fraud_detected);
-CREATE INDEX idx_fraud_logs_fraud_score ON fraud_logs(fraud_score);
-CREATE INDEX idx_fraud_logs_created_at ON fraud_logs(created_at);
-CREATE INDEX idx_fraud_logs_human_reviewed ON fraud_logs(human_reviewed);
+CREATE INDEX IF NOT EXISTS idx_fraud_logs_transaction_id ON fraud_logs(transaction_id);
+CREATE INDEX IF NOT EXISTS idx_fraud_logs_fraud_detected ON fraud_logs(fraud_detected);
+CREATE INDEX IF NOT EXISTS idx_fraud_logs_fraud_score ON fraud_logs(fraud_score);
+CREATE INDEX IF NOT EXISTS idx_fraud_logs_created_at ON fraud_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_fraud_logs_human_reviewed ON fraud_logs(human_reviewed);
 
 -- =============================================
 -- TABLA: users (Usuarios del sistema)
@@ -131,9 +131,9 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Índices para users
-CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_users_role ON users(role);
-CREATE INDEX idx_users_is_active ON users(is_active);
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+CREATE INDEX IF NOT EXISTS idx_users_is_active ON users(is_active);
 
 -- =============================================
 -- TABLA: api_keys (Claves API para integraciones)
@@ -151,8 +151,8 @@ CREATE TABLE IF NOT EXISTS api_keys (
 );
 
 -- Índices para api_keys
-CREATE INDEX idx_api_keys_key_hash ON api_keys(key_hash);
-CREATE INDEX idx_api_keys_is_active ON api_keys(is_active);
+CREATE INDEX IF NOT EXISTS idx_api_keys_key_hash ON api_keys(key_hash);
+CREATE INDEX IF NOT EXISTS idx_api_keys_is_active ON api_keys(is_active);
 
 -- =============================================
 -- TABLA: training_data (Datos de entrenamiento)
@@ -168,9 +168,9 @@ CREATE TABLE IF NOT EXISTS training_data (
 );
 
 -- Índices para training_data
-CREATE INDEX idx_training_data_fraud_label ON training_data(fraud_label);
-CREATE INDEX idx_training_data_is_validated ON training_data(is_validated);
-CREATE INDEX idx_training_data_used_for_training ON training_data(used_for_training);
+CREATE INDEX IF NOT EXISTS idx_training_data_fraud_label ON training_data(fraud_label);
+CREATE INDEX IF NOT EXISTS idx_training_data_is_validated ON training_data(is_validated);
+CREATE INDEX IF NOT EXISTS idx_training_data_used_for_training ON training_data(used_for_training);
 
 -- =============================================
 -- TABLA: system_logs (Logs del sistema)
@@ -186,10 +186,10 @@ CREATE TABLE IF NOT EXISTS system_logs (
 );
 
 -- Índices para system_logs
-CREATE INDEX idx_system_logs_level ON system_logs(level);
-CREATE INDEX idx_system_logs_service ON system_logs(service);
-CREATE INDEX idx_system_logs_created_at ON system_logs(created_at);
-CREATE INDEX idx_system_logs_user_id ON system_logs(user_id);
+CREATE INDEX IF NOT EXISTS idx_system_logs_level ON system_logs(level);
+CREATE INDEX IF NOT EXISTS idx_system_logs_service ON system_logs(service);
+CREATE INDEX IF NOT EXISTS idx_system_logs_created_at ON system_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_system_logs_user_id ON system_logs(user_id);
 
 -- =============================================
 -- TABLA: notification_logs (Registro de notificaciones)
@@ -208,10 +208,10 @@ CREATE TABLE IF NOT EXISTS notification_logs (
 );
 
 -- Índices para notification_logs
-CREATE INDEX idx_notification_logs_type ON notification_logs(type);
-CREATE INDEX idx_notification_logs_status ON notification_logs(status);
-CREATE INDEX idx_notification_logs_fraud_log_id ON notification_logs(fraud_log_id);
-CREATE INDEX idx_notification_logs_created_at ON notification_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_type ON notification_logs(type);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_status ON notification_logs(status);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_fraud_log_id ON notification_logs(fraud_log_id);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_created_at ON notification_logs(created_at);
 
 -- =============================================
 -- FUNCIONES TRIGGER para updated_at
