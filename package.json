@@ -22,7 +22,7 @@
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "axios": "^1.4.0",
-    "brain.js": "^2.0.0",
+    "brain.js": "^1.6.1",
     "ml-matrix": "^6.10.4",
     "twilio": "^4.11.1",
     "node-cron": "^3.0.2",
